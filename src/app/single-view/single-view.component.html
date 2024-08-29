@@ -1,1 +1,39 @@
-<p>single-view works!</p>
+<div class="mt-5 pt-5 container">
+    <div class="row shadow container p-5">
+
+        <div class="col-lg-6">
+            <img width="50%" [src]="product.image" alt="">
+        </div>
+
+        <div class="col-lg-6">
+            <h1>{{product.title}}</h1>
+
+            <h3 class="my-3">Price: <span class="text-success">$ {{product.price}}</span></h3>
+
+            <p>{{product.category}}</p>
+
+            <h4>Rating: {{product?.rating?.rate}}  <i class="fa-solid fa-star" style="color: #FFD43B;"></i>({{product?.rating?.count}})</h4>
+            <p>
+                ({{product.description}})
+            </p>
+
+            <div class="d-flex justify-content-around mt-4">
+    
+                <div class="d-flex">
+                    <button (click)="addToCart(product)" class="btn btn-outline-secondary">
+                        <i class="fa-solid fa-cart-plus" style="color: #000000;"></i>
+                    </button>    
+                </div>
+ 
+               
+                <div>
+                    <button (click)="addToWishlist(product)" class="btn btn-outline-secondary">
+                        <i class="fa-solid fa-heart-circle-plus" style="color: #ff0000;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

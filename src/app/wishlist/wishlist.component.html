@@ -1,1 +1,53 @@
-<p>wishlist works!</p>
+<!-- wishlist empty-->
+
+<div *ngIf="wishlistItems.length<=0" class="empty m-5 text-center">
+    <h3>Your Wishlist is empty..!  Add more items</h3>
+     <div class="d-flex justify-content-center align-items-center ">
+        <img style="width: 50%;" src="https://i.pinimg.com/originals/5a/d0/47/5ad047a18772cf0488a908d98942f9bf.gif" alt="">
+     </div>
+    
+     <div class="text-center">
+        <button class="btn btn-secondary">Add items</button>
+     </div>
+</div>
+
+
+<div *ngIf="wishlistItems.length>0" class="d-flex justify-content-center gap-3 flex-wrap">
+        
+
+      <div *ngFor="let i of wishlistItems" class="card mb-3" style="max-width: 480px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img [src]="i.image" class="img-fluid rounded-start w-100 p-3" style="height: 200px;" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body text-center">
+              <h5 class="card-title">{{i.title.length>19?i.title.slice(0,20)+"...":i.title}}</h5>
+              <p class="card-text">{{i.category}}</p>
+              <h3>${{i.price}}</h3>
+              <div class="d-flex justify-content-around">
+    
+                <div class="d-flex">
+                    <button (click)="addToCart(i)" class="btn btn-outline-secondary">
+                        <i class="fa-solid fa-cart-plus" style="color: #000000;"></i>
+                    </button>    
+                </div>
+ 
+               
+                <div>
+                    <button (click)="removeWishlist(i._id)" class="btn btn-outline-secondary">
+                        <i class="fa-solid fa-heart-circle-xmark" style="color: #ff0000;"></i>
+                    </button>
+                </div>
+
+    
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+</div>
+

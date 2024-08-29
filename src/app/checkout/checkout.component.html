@@ -1,1 +1,52 @@
-<p>checkout works!</p>
+<div class=" container ">
+    <div *ngIf="!checkOutStatus" class="text-center container w-75 ">
+        <h1>Continue Payment</h1>
+        <form [formGroup]="checkOut" action="" class="">
+            <div class="form-floating mb-3">
+                <input  formControlName="fullName" name="n1" type="text" class="form-control" id="floatingInput" placeholder="name">
+                <label for="floatingInput">Full Name</label>
+              </div>
+              <p class="text-center text-danger">*Enter a valid Name</p>
+              <div class="form-floating mb-3">
+                <input formControlName="address" type="text" class="form-control" id="floatingInput" placeholder="name">
+                <label for="floatingInput">Address</label>
+              </div>
+              <p class="text-center text-danger">*Enter a valid format</p>
+              <div class="form-floating mb-3">
+                <input formControlName="pin" type="text" class="form-control" id="floatingInput" placeholder="name">
+                <label for="floatingInput">Pincode</label>
+              </div>
+              <p class="text-center text-danger">*Enter a valid Pin</p>
+              <div class="d-flex justify-content-center gap-3">
+                <button (click)="proceedToBuy()" class="btn btn-success">Proceed to buy</button>
+                <button (click)="cancel()" class="btn btn-danger">Cancel</button>
+              </div>
+        </form>
+    
+        
+    </div>
+    
+    <div *ngIf="checkOutStatus" class="w-75 container text-center p-5">
+        <p class="fs-3">Delivery Address</p>
+        <hr>
+        <div class="ms-4">
+            <p>{{checkOut.value.fullName}}</p>
+            <p>{{checkOut.value.address}}</p>
+            <p>{{checkOut.value.pin}}</p>
+        </div>
+        <h3>Total Amount:<span class="fs-1 text-success">${{total}}</span></h3>
+        <hr>
+        <div class="d-flex justify-content-center gap-3">
+            <button (click)="pay()" class="btn btn-success">Continue</button>
+            <button (click)="cancelPayment()" class="btn btn-danger">Cancel</button>
+          </div>
+
+          <div>
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+          </div>
+
+    
+    </div>
+</div>
+
+

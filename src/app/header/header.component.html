@@ -6,22 +6,25 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarScroll">
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
-          </li>
+          </li> -->
         </ul>
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <input [(ngModel)]="searchData" (keyup)="updateData($event)" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         </form>
 
-        <i class="fa-solid fa-heart fa-lg mx-2"  style="color: #f00000;"></i>
+        <i routerLink="/wishlist" class="fa-solid fa-heart fa-lg mx-2"  style="color: #f00000;"></i>
 
-        <i class="fa-solid fa-cart-shopping fa-lg mx-2" style="color: #000000;"></i><span>2</span>
+        <i routerLink="/cart" class="fa-solid fa-cart-shopping fa-lg mx-2" style="color: #000000;"></i><span>{{cartCount}}</span>
 
-        <i class="fa-solid fa-user ms-4" style="color: #000000;"></i><span class="ms-1">Login</span>
+        <a *ngIf="login" routerLink="/login"><i class="fa-solid fa-user ms-4" style="color: #000000;"></i><span class="ms-1">Login</span></a>
+
+        <a *ngIf="!login" (click)="logout()"><i class="fa-solid fa-user ms-4" style="color: #000000;"></i><span class="ms-1">Logout</span></a>
+
       </div>
     </div>
   </nav>

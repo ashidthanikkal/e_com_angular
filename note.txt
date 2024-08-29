@@ -1,0 +1,254 @@
+Angular
+---------------
+
+install angular cli(command line interpreter) - npm install -g @angular/cli@16.1.7
+check angular cli version- ng v 
+
+__________________________
+
+angular - framework of TypeScript - google - real dom
+react - library of javascript - meta - virtual dom
+
+_________________________ 
+
+TypeScript
+-----------
+
+superset of javascript
+javascript - dynamically typed language - variable_name=value
+TypeScript - strictly typed language    - variable_name:type=value 
+                                        - variable_name:any/unknown
+
+angular components- class based components(statefull components)- html,css,ts
+react components - function based components(stateless) - jsx(javascript and xml - js,html),css
+
+browser - html,css,js 
+ts is transpiled into js 
+
+AOT(ahead of time) - combilation  - faster
+            - combiles code before the angular app is loaded in the browser
+            - recommended during production
+JIT(just in time) - combilation    
+             - combiles code during angular app is launched in the browser
+             - recommended during localhost running
+
+____________________________
+
+create new project in angular - ng new project-name
+
+run - ng serve
+    - ng serve --open -   ng s -o
+
+file & folder structure of angular project 
+------------------------------------------
+
+.editoConfig - contain editor configurations
+.gitignore -
+angular.json -angular configuaration file for this project 
+tsconfig.app.json,tsconfig.json,tsconfig.spec.json-ts related files(conf,testing,quality)
+-src - source folder
+    styles.css - used to apply global styles
+    main.ts - used to define which module is loaded first 
+
+
+module - is a container for diff parts of an app , it consist of components
+       - by default angular provide a module- AppModule (root module)
+       - AppModule contain a component - AppComponent (root component)
+
+Decorators - used to define metadata(a data inside another data)
+           - it starts with '@' symbol
+
+components - used to create user interfaces
+           - create new components -  ng generate component componentName
+                                   - 
+                                    ng g c componentName
+
+____________________________
+
+Redierection In Angular 
+-----------------------
+ 1- set path for components - app-routing.module.ts 
+ 2- add router-outlet selector in root component to change the html view  of root 
+    component by user requested route 
+link    - routerLink atribute used instead of href in a tag
+        - routerLink="/path"
+method  - navigateByUrl() - method used to redierect
+        - navigateByUrl("/path")
+        - Router  - class 
+        - AppRoutingModule - module
+
+____________________________ 
+
+Data Binding In Angular 
+------------------------
+
+1 - One Way Binding 
+
+    1.1 - ts to html(component to view)
+
+        1.1.1- string interpollation - {{data}}
+        1.1.2- property binding      - [property]="data"
+    
+    1.2 - html to ts(view to component)
+    
+        1.2.1- event binding - bind events without target values - 
+                               (eventName) = "method()"
+
+        1.2.2- $event binding - bind events with target values
+                              - (eventName)= "method($event)"
+
+        1.2.3- event binding with template rendering variable
+                              - #variable
+
+2 - Two Way Binding
+
+        2.1- ngModel - its a method provided by a module called FormsModule 
+            [(ng model)] = "variable"
+
+____________________________________
+
+Data Sharing In Angular Components
+------------------------------------
+
+Angular Services - its a ts file in a module,all components in that
+module can access the datas and methods in that service file 
+
+- ng generate service serviceName - ng g s serviceName 
+____________________________ 
+
+Dependency Injection 
+---------------------
+
+its used to inject dependencies(methods and atributes) of one class in 
+another class (same as inheritance)
+
+dependency injection ex:
+         
+         constructor(access specifier variable:ClassName){
+
+         }
+
+- access specifier- private - the depedencies can be acceessed only within the
+                              class 
+                  - public - the depedencies can be acceessed anywhere in the 
+                              file
+
+___________________________ 
+
+ngOnInit In Angular Component 
+-----------------------------
+
+its a abstracted method in angular components its work automatically just 
+after the excecution of constructor method .
+
+___________________________
+
+Api In Angular
+---------------
+
+HttpClientModule - module used for api call in angular 
+HttpClient - class 
+post,get,put,patch,delete,... - methods  
+
+____________________________
+asynchronous code handling in ts
+---------------------------------
+
+js - Promise -- resolve  - then()
+             -- reject   - catch()
+
+ts - Observable -- resolve - subscribe()
+                -- reject  - catch()
+
+___________________________
+Angular Dierectives 
+-------------------
+
+used to manipulate dom 
+
+1- component dierectives - ng g c componentName - when creating new component 
+                           an extra node is added in dom
+2- structural dierectives - changing existing elmnt structure of dom 
+                          - condition - *ngIf
+                          - loop      - *ngFor
+3- atribute dierectives   - changing the appearence or behaviour of dom elmnts
+                          - ngClass
+___________________________
+
+access url params in angular
+----------------------------
+
+params() -method 
+ActivatedRoute - class 
+
+___________________________ 
+
+Angular Pipes
+-------------
+
+angular pipes are used to convert data into another format
+
+1-inbuilt pipes - DatePipe,UpperCasePipe,LowerCasePipe...
+
+2-user-defined pipes  - ng g p pipeName
+
+___________________________
+module creation in angular 
+--------------------------
+
+normal module 
+------------
+all components in that module loaded initially
+- ng g m moduleName --route
+
+lazy loaded module
+--------------------
+
+only loaded the components inside lazy loaded module when user request 
+that component
+
+-  ng g m moduleName --route moduleName --module app.module
+
+______________________________ 
+
+Angular Forms Creation 
+---------------------
+
+1- template driven form -creating form with html elmnts- normal method
+2- reactive form(model driven form) - creating a form with html elmnts and an extra
+                                      model is creating 
+                                    - adv:inbuilt methods available for data binding 
+                                      and validation 
+Reactive Form 
+--------------
+
+ReactiveFormsModule - module 
+FormBuilder         - class
+group()             - method used to create model for form
+
+___________________________
+
+Parent Child Communication in Angular
+-------------------------------------
+
+1-parent to child - can share properties of parent - @Input
+2-child to parent - can share data only through events - @Output
+                  - EventEmitter - class used to create userdefined events 
+                  
+RoutGuards In Angular 
+-------------------
+
+ng g g guardName
+
+____________________________
+
+Data Sharing In Unrelated Components In Angular 
+----------------------------------------------
+
+Behaviour Subject 
+----------------- 
+
+- its an object of class BehaviourSubject its provided by 
+  library Rxjs(reactive extension for javaScript)
+- any components can subscribe and update the value of BehaviourSubject
+- all subscribers can get the latest value of BehaviourSubject

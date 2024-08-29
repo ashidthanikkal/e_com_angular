@@ -1,1 +1,70 @@
-<p>cart works!</p>
+<!-- cart empty-->
+
+<div *ngIf="cartItems.length<=0"  class="empty m-5 text-center">
+    <h3>Your cart is empty..!  Add more items</h3>
+     <div class="d-flex justify-content-center align-items-center ">
+        <img style="width: 50%;" src="https://i.pinimg.com/originals/5a/d0/47/5ad047a18772cf0488a908d98942f9bf.gif" alt="">
+     </div>
+    
+     <div class="text-center">
+        <button class="btn btn-secondary">Add items</button>
+     </div>
+</div>
+
+
+<!--item in cart-->
+
+<div  *ngIf="cartItems.length>0" class="row container mt-5">
+    <div class="col-lg-9">
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+        
+            <div *ngFor="let i of cartItems"  class="card mb-3" style="max-width: 450px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img [src]="i.image" class="img-fluid rounded-start w-100 p-3" style="height: 100%;" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body text-center">
+                      <h5 class="card-title">{{i.title.length>19?i.title.slice(0,20)+"...":i.title}}</h5>
+                      <p class="card-text">{{i.category}}</p>
+                      <h3>${{i.price}}</h3>
+                      <div class="d-flex justify-content-around">
+            
+                        <div class="d-flex">
+                            <button (click)="decrement(i._id)" class="btn fw-bolder">
+                               -
+                            </button>
+                            <input type="num" class="form-control text-center" id="inputQuantity" [value]="i.quantity" style="max-width: 3rem;" readonly>
+            
+                            <button (click)="increment(i._id)" class="btn fw-bolder">
+                                +
+                             </button>
+                        </div>
+         
+                       
+                        <div>
+                            <button (click)="removeCart(i._id)" class="btn btn-outline-secondary">
+                                <i class="fa-solid fa-trash" style="color: #e90000;"></i>
+                            </button>
+                        </div>
+                    </div>
+            
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+        </div>
+    </div>
+    <div class="col-lg-3">
+
+        <div class="border shadow-lg p-5 text-center bg-dark rounded-3">
+
+            <h4 class="text-secondary">Total Price: <span class="text-white">${{totalPrice}}</span></h4>
+
+            <button (click)="checkoutPage()" class="btn btn-outline-light"> Check Out</button>
+
+        </div>
+    
+    </div>
+</div>
